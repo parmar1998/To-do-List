@@ -1,0 +1,108 @@
+<html>
+  <head>
+    <title><%=title%></title>
+  </head>
+  <!-- CSS script -->
+  <link rel="stylesheet" href="./assets/style.css" />
+  <!-- Font awesome -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
+  />
+  <!-- boot strap icon -->
+  <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+  />
+  <!-- Boot strap link -->
+  <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+    crossorigin="anonymous"
+  />
+  <link rel="stylesheet" href="style.css" />
+
+  <body>
+    <section class="container">
+      <h1 align="center"></h1>
+      <form action="/create-task" method="post">
+        <table class="table">
+          <thead>
+            <tr class="table-active">
+              <th>Add Task</th>
+              <th>Category</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <input
+                  type="text"
+                  name="description"
+                  placeholder="What do you need to do"
+                  required/>
+              </td>
+              <td>
+                <select name="category" required>
+                  <option>PERSONAL</option>
+                  <option>WORK</option>
+                  <option>SCHOOL</option>
+                  <option>CLEANING</option>
+                  <option>OTHER</option>
+                </select>
+              </td>
+              <td><input type="date" name="dueDate" required /></td>
+              <td>
+                <input
+                  type="submit"
+                  class="btn btn-success"
+                  id="add"
+                  value="ADD TASK"
+                  required
+                />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </form>
+    </section>
+    <div>
+      <h1 style="text-align: center">TASK LIST</h1>
+      <form action="/delete-task" method="get">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Select</th>
+              <th>Task</th>
+              <th>Category</th>
+              <th>Due Date</th>
+            </tr>
+          </thead>
+          <%for(let i of task){%>
+          <tr>
+            <td>
+              <input type="checkbox" name="<%=i._id%>"/>
+            </td>
+            <td>
+              <p id="task-description"><%=i.description%>
+              </p>
+            </td>
+            <td>
+              <p id="task-category"></p><%=i.category%>
+            </td>
+            <td>
+              <p id="due-date">:<%=i.dueDate%>
+              </p>
+            </td>
+          </tr>
+          <%}%>
+        </table>
+        <div align="center">
+          <input type="submit" class="btn btn-danger" value="DELETE TASK" />
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
